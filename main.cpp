@@ -7,9 +7,9 @@
 int main(int argc, char* argv[])
 {
 	rectangle r{5, 3};
-	square sq{ 10 };
+	square sq{ 5 };
 	circle cir{ 1 };
-	triangle tri{ 12, 13 , 5 };
+	triangle tri{ 3,4,5};
 
 	const shape& s = tri;
 	const rectangle r2{ 2,3 };
@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
 	/*********************************************************/
 
 	std::cout << sq << std::endl; // square(s: 5, area: 25, perimeter: 20)
-	std::cout << s << std::endl;
+	std::cout << s << std::endl;  //triangle(b: 12, lside: 13, rside: 5, area: 30, perimeter: 30)
 
 	return 0;
 }

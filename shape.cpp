@@ -1,8 +1,5 @@
 #include "shape.h"
-#include <math.h>
-#include <string>
-#include <sstream>
-#include <ostream>
+#include <cmath>
 
 
 /*-----------------------------*/
@@ -38,15 +35,24 @@ float rectangle::circumference() const
 	return perimeter();
 }
 
-void rectangle::shape_info(std::ostream& out) const
+std::ostream& rectangle::shape_info(std::ostream& out) const
 {
-	out << "rectangle(w: " << width()
-		<< "(h: " << height()
-		<< ", area: " << area()
-		<< ", perimeter: " << perimeter()
-		<< ")";
+	return out  << "rectangle"
+				<< "(w: " << width()  << ", "
+				<< "h: " << height()  << ", "
+				<< "area: " << area() << ", "
+				<< "perimeter: " << perimeter() 
+				<< ")";
 }
 
+std::string rectangle::shape_details() const
+{
+	return "rectangle(w: " + std::to_string(width())
+		+  ", h: " + std::to_string(height())
+		+  ", area: " + std::to_string(area())
+		+  ", perimeter: " + std::to_string(perimeter())
+		+  ")";
+}
 
 /*-----------------------------*/
 /*            square           */
@@ -62,15 +68,22 @@ float square::side() const
 	return rectangle::width();
 }
 
-void square::shape_info(std::ostream& out) const
+std::ostream& square::shape_info(std::ostream& out) const
 {
-	out << "square(s: " << side()
-		<< ", area: " << area()
-		<< ", perimeter: " << perimeter()
-		<< ")";
+	return out  << "square("
+				<<"s: " << side()	  << ", "
+				<< "area: " << area() << ", "
+				<< "perimeter: " << perimeter()
+				<< ")";
 }
 
-
+std::string square::shape_details() const
+{
+	return "square(s: " + std::to_string(side())
+		+ ", area: " + std::to_string(area())
+		+ ", perimeter: " + std::to_string(perimeter())
+		+ ")";
+}
 
 
 /*-----------------------------*/
@@ -104,12 +117,21 @@ float circle::circumference() const
 	return m_radius * m_PI * 2;
 }
 
-void circle::shape_info(std::ostream& out) const
+std::ostream& circle::shape_info(std::ostream& out) const
 {
-	out << "circle(r: " << radius()
-		<< ", area: " << area()
-		<< ", circumference: " << circumference()
-		<< ")";
+	return out  << "circle("
+				<< "r: " << radius()	<< ", "
+				<< "area: " << area()	<< ", "
+				<< "circumference: " << circumference()
+				<< ")";
+}
+
+std::string circle::shape_details() const
+{
+	return "circle(r: " + std::to_string(radius())
+		+ ", area: " + std::to_string(area())
+		+ ", circumference: " + std::to_string(circumference())
+		+ ")";
 }
 
 
@@ -152,49 +174,50 @@ float triangle::circumference() const
 	return perimeter();
 }
 
-void triangle::shape_info(std::ostream& out) const
+std::ostream& triangle::shape_info(std::ostream& out) const
 {
-	out << "triangle(b: " << bottom()
-		<< ", l: " << lside()
-		<< ", r: " << rside()
-		<< ", area: " << area()
-		<< ", perimeter: " << perimeter()
-		<< ")";
+	return out  << "triangle("
+				<< "b: " << bottom()	<< ", "
+				<< "l: " << lside()		<< ", "
+				<< "r: " << rside()		<< ", "
+				<< "area: " << area()	<< ", "
+				<< "perimeter: " << perimeter()
+				<< ")";
 }
-
+std::string triangle::shape_details() const
+{
+	return "triangle(b: " + std::to_string(bottom())
+		+ ", l: " + std::to_string(lside())
+		+ ", r: " + std::to_string(rside())
+		+ ", area: " + std::to_string(area())
+		+ ", perimeter: " + std::to_string(perimeter())
+		+ ")";
+}
 
 
 
 std::ostream& operator<<(std::ostream& os, const shape& sp)
-{	
-	// return os << "it won't print anything (._.)";
-	sp.shape_info(os);
-	return os;
+{
+	return sp.shape_info(os);
+	// return os << sp.shape_details();
 }
 
-
+/*
 std::ostream& operator<<(std::ostream& os, const rectangle& rect)
 {
-	rect.shape_info(os);
+	return os << rect.shape_details();
 
-	return os;
 }
 std::ostream& operator<<(std::ostream& os, const square& sq)
 {
-	sq.shape_info(os);
-
-	return os;
+	return os << sq.shape_details();
 }
 std::ostream& operator<<(std::ostream& os, const circle& cir)
 {
-	cir.shape_info(os);
-
-	return os;
-
+	return os << cir.shape_details();
 }
 std::ostream& operator<<(std::ostream& os, const triangle& tri)
 {
-	tri.shape_info(os);
-
-	return os;
+	return os << tri.shape_details();
 }
+*/

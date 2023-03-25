@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include <ostream>
 
 class shape
@@ -16,7 +17,8 @@ public:
 	virtual float area() const = 0; // pure virtual method
 	virtual float perimeter() const = 0;
 	virtual float circumference() const = 0;
-	virtual void shape_info(std::ostream&) const = 0;
+	virtual std::ostream& shape_info(std::ostream&) const = 0;
+	virtual std::string shape_details() const = 0;
 };
 
 
@@ -34,7 +36,9 @@ public:
 	float perimeter() const override;
 	float circumference() const override;
 
-	void shape_info(std::ostream&) const override;
+	std::ostream& shape_info(std::ostream&) const override;
+
+	std::string shape_details() const override;
 
 private:
 	float m_width;
@@ -49,8 +53,9 @@ public:
 	square(float side);
 
 	float side() const;
-	void shape_info(std::ostream&) const override;
+	std::ostream& shape_info(std::ostream&) const override;
 
+	std::string shape_details() const override;
 };
 
 
@@ -65,8 +70,9 @@ public:
 	float area() const override;
 	float perimeter() const override;
 	float circumference() const override;
-	void shape_info(std::ostream&) const override;
+	std::ostream& shape_info(std::ostream&) const override;
 
+	std::string shape_details() const override;
 
 private:
 	const float m_PI = 3.1415926F;
@@ -89,8 +95,9 @@ public:
 	float area() const override;
 	float perimeter() const override;
 	float circumference() const override;
-	void shape_info(std::ostream&) const override;
+	std::ostream& shape_info(std::ostream&) const override;
 
+	std::string shape_details() const override;
 
 private:
 	float m_bottom;
@@ -99,7 +106,10 @@ private:
 };
 
 std::ostream& operator<<(std::ostream& os, const shape& sp);
+
+/*
 std::ostream& operator<<(std::ostream& os, const rectangle& rect);
 std::ostream& operator<<(std::ostream& os, const square& sq);
 std::ostream& operator<<(std::ostream& os, const circle& cir);
 std::ostream& operator<<(std::ostream& os, const triangle& tri);
+*/
